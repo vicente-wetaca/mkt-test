@@ -47,9 +47,9 @@ Naming conventions that ship with the skill:
 clean-code-ts/
 ├── .claude-plugin/
 │   ├── plugin.json
-│   └── customizations.json   # lineage + diff vs upstream
+│   └── customizations.json   # upstream tracking + diff vs upstream (dev-forge schema)
 ├── skills/
-│   └── clean-code-ts/
+│   └── improve-codebase-architecture/   # dir name matches upstream for update-check; user-facing name (in SKILL.md frontmatter) is clean-code-ts
 │       ├── SKILL.md          # entry point, frontmatter triggers on TS projects
 │       ├── DEEPENING.md      # dependency categories + testing strategy
 │       ├── INTERFACE-DESIGN.md # parallel sub-agent interface exploration
@@ -57,6 +57,8 @@ clean-code-ts/
 │       └── HTML-REPORT.md    # scaffold for the HTML candidate report
 └── README.md
 ```
+
+> **Upstream sync**: this plugin is a fork of `dmedina-dev/dev-forge` → `plugins/forge-mattpocock/skills/improve-codebase-architecture/` (which itself curates `mattpocock/skills`). The local skill directory is named `improve-codebase-architecture` to match upstream so an update-check tool can map files 1:1; the user-facing skill name (`clean-code-ts`) lives in `SKILL.md` frontmatter. See [`../../docs/upstream-sync.md`](../../docs/upstream-sync.md) for the marketplace convention.
 
 ## Installation
 

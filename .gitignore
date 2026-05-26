@@ -5,6 +5,9 @@
 # Dependencias regenerables
 node_modules/
 
+# Upstream clones para el flujo de update-check (cf. docs/upstream-sync.md)
+.upstream/
+
 # Artefactos del SO / editores
 .DS_Store
 Thumbs.db

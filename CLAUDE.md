@@ -24,3 +24,17 @@ Referencias canónicas (consultar antes de proponer estructura o cambios):
 
 Si una decisión entra en conflicto con esas referencias, gana la referencia.
 Si la referencia no cubre el caso, dejarlo explícito antes de implementar.
+
+### 2. Upstream tracking para plugins forkeados
+
+Todo plugin de este marketplace que sea fork de un repo externo de GitHub
+debe declarar su origen y sus customizations en
+`plugins/<name>/.claude-plugin/customizations.json`, siguiendo la convención
+documentada en [`docs/upstream-sync.md`](docs/upstream-sync.md).
+
+El esquema es compatible con `forge-keeper:update-check` de dev-forge, de
+forma que ese comando (u otro equivalente) pueda detectar updates upstream
+y aplicarlos preservando las customizations locales.
+
+Plugins nativos (sin upstream público) no llevan `customizations.json`, o
+llevan uno con `origin.type: "native"`.

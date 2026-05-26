@@ -1,71 +1,84 @@
 {
-  "$comment": "Lineage and changes applied on top of the upstream curation. Future syncs should re-apply these on top of refreshed upstream content.",
-  "upstream": [
+  "$schema-comment": "Dev-forge-compatible upstream tracking schema. `origin` describes the immediate upstream (dev-forge); `lineage` records prior layers for attribution. `customizations[]` describes local edits relative to upstream paths inside `origin.path`. Local files live at `plugins/clean-code-ts/skills/improve-codebase-architecture/<target>`. Compatible with forge-keeper:update-check (or any equivalent tool).",
+  "origin": {
+    "type": "github",
+    "repo": "dmedina-dev/dev-forge",
+    "path": "plugins/forge-mattpocock/skills/improve-codebase-architecture",
+    "ref": "main",
+    "commit": "330000f7b6c38297b4604bb13ae475ea7126707a",
+    "fetched_at": "2026-05-26",
+    "check_url": "https://github.com/dmedina-dev/dev-forge/tree/main/plugins/forge-mattpocock/skills/improve-codebase-architecture"
+  },
+  "lineage": [
     {
-      "origin": "mattpocock/skills",
-      "path": "skills/engineering/improve-codebase-architecture/",
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/improve-codebase-architecture",
       "license": "MIT",
+      "role": "original author",
       "url": "https://github.com/mattpocock/skills"
-    },
-    {
-      "origin": "dmedina-dev/dev-forge",
-      "path": "plugins/forge-mattpocock/skills/improve-codebase-architecture/",
-      "license": "MIT",
-      "url": "https://github.com/dmedina-dev/dev-forge",
-      "role": "intermediate curator"
     }
   ],
-  "skill": "clean-code-ts",
-  "changes": [
+  "upstream_status": {
+    "last_checked": "2026-05-26",
+    "latest_ref": "main",
+    "latest_commit": "330000f7b6c38297b4604bb13ae475ea7126707a",
+    "has_updates": false,
+    "summary": "Initial fork; no updates pending.",
+    "changes": []
+  },
+  "local_layout": {
+    "skill_dir": "skills/improve-codebase-architecture",
+    "note": "Local skill dir name matches upstream skill name so update-check can map upstream files to local files 1:1. User-facing skill name is overridden in SKILL.md frontmatter (`name: clean-code-ts`)."
+  },
+  "customizations": [
     {
-      "file": "SKILL.md",
-      "type": "frontmatter",
-      "detail": "Renamed skill to `clean-code-ts`; rewrote `description` to trigger on TypeScript projects (tsconfig.json, .ts/.tsx) instead of the generic 'codebase architecture' wording."
+      "id": "custom-01",
+      "type": "modified",
+      "target": "SKILL.md",
+      "summary": "Renamed skill (frontmatter `name`) from improve-codebase-architecture to clean-code-ts; rewrote `description` to trigger on TypeScript projects (mentions tsconfig.json, .ts/.tsx).",
+      "reason": "Makes the skill auto-activate on TS work and signals its TS focus in the marketplace listing."
     },
     {
-      "file": "SKILL.md",
-      "type": "addition",
-      "detail": "Added a `## TypeScript focus` section enumerating TS idioms the skill should prefer (discriminated unions, branded types, `unknown` over `any`, `Readonly<T>`, string unions over `enum`, TS `interface` for ports)."
+      "id": "custom-02",
+      "type": "modified",
+      "target": "SKILL.md",
+      "summary": "Added `## TypeScript focus` section enumerating TS idioms (discriminated unions, branded types, `unknown` over `any`, `Readonly<T>`, string unions over `enum`, TS `interface` for ports). Added TS-specific friction signals to the Explore step.",
+      "reason": "The upstream skill is intentionally language-agnostic; this plugin is the TS-focused fork."
     },
     {
-      "file": "SKILL.md",
-      "type": "addition",
-      "detail": "Added TypeScript-specific friction signals to the Explore step (pervasive `any`, runtime guards re-validating the same shape, large optional-field option objects, class hierarchies where a discriminated union would fit)."
+      "id": "custom-03",
+      "type": "modified",
+      "target": "SKILL.md",
+      "summary": "Removed cross-links to sibling forge-mattpocock skills (`../grill-with-docs/GLOSSARY-FORMAT.md`, `../grill-with-docs/ADR-FORMAT.md`); replaced with inline guidance.",
+      "reason": "This plugin ships only the architecture skill, so the cross-skill links would be broken."
     },
     {
-      "file": "INTERFACE-DESIGN.md",
-      "type": "addition",
-      "detail": "Added `## TypeScript idioms for designing interfaces` with worked examples for discriminated unions, branded types, `unknown` at boundaries, option-object signatures, ports as TS `interface`, avoiding `enum`, readonly-by-default."
+      "id": "custom-04",
+      "type": "modified",
+      "target": "INTERFACE-DESIGN.md",
+      "summary": "Added `## TypeScript idioms for designing interfaces` with TS code examples: discriminated unions, branded types, `unknown` at boundaries, option-object signatures, ports as TS `interface`, avoiding `enum`, readonly-by-default.",
+      "reason": "Concretes the upstream's interface-design advice with TS-specific examples."
     },
     {
-      "file": "DEEPENING.md",
-      "type": "addition",
-      "detail": "Annotated each dependency category (1–4) with a `TypeScript flavour` paragraph: pure functions + Readonly for in-process, structural typing for local-substitutable, TS interface as port for remote-owned, narrow port over vendor SDK for true external."
+      "id": "custom-05",
+      "type": "modified",
+      "target": "DEEPENING.md",
+      "summary": "Annotated each dependency category (1–4) with a `TypeScript flavour` paragraph; added `expectTypeOf`/`assertType` note to the testing strategy.",
+      "reason": "Same as custom-04, applied to deepening mechanics."
     },
     {
-      "file": "DEEPENING.md",
-      "type": "addition",
-      "detail": "Added `expectTypeOf` / `assertType` note to the testing strategy section — TS return types are part of the contract."
+      "id": "custom-06",
+      "type": "modified",
+      "target": "LANGUAGE.md",
+      "summary": "Added `## TypeScript naming conventions` section (vacuous nouns to avoid, verbs vs nouns, earned suffixes like Repository/Gateway/Policy, case conventions). Extended `## Rejected framings` with TS-specific rejections (`enum` over string unions, `any` instead of `unknown`).",
+      "reason": "Names are part of the interface; the upstream vocabulary needed TS-specific extensions."
     },
     {
-      "file": "LANGUAGE.md",
-      "type": "addition",
-      "detail": "Added `## TypeScript naming conventions` section (vacuous nouns to avoid, verbs vs nouns, earned suffixes like Repository/Gateway/Policy, case conventions)."
-    },
-    {
-      "file": "LANGUAGE.md",
-      "type": "addition",
-      "detail": "Extended `## Rejected framings` with TS-specific rejections (`enum` over string unions, `any` instead of `unknown`)."
-    },
-    {
-      "file": "HTML-REPORT.md",
+      "id": "custom-07",
       "type": "unchanged",
-      "detail": "Copied verbatim from upstream."
-    },
-    {
-      "file": "SKILL.md / INTERFACE-DESIGN.md / DEEPENING.md",
-      "type": "link-cleanup",
-      "detail": "Removed cross-links to other forge-mattpocock skills (`../grill-with-docs/GLOSSARY-FORMAT.md`, `../grill-with-docs/ADR-FORMAT.md`) since this plugin ships only the architecture skill. Behaviour preserved as inline guidance."
+      "target": "HTML-REPORT.md",
+      "summary": "Copied verbatim from upstream — no TS adaptation needed.",
+      "reason": "The report scaffold is language-agnostic."
     }
   ]
 }
