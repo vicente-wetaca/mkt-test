@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "mkt-test",
+  "description": "Personal Claude Code plugins marketplace — testing ground for forking, customizing and publishing plugins.",
+  "version": "0.1.0",
+  "owner": {
+    "name": "Vicente Sempere",
+    "email": "vicentesempere@wetaca.com"
+  },
+  "metadata": {
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "mr-auto-review",
+      "source": "mr-auto-review",
+      "description": "Multi-agent MR reviewer: dispatches specialist reviewer agents in parallel and triages findings into a single human-facing report. Originally built for the Wetaca monorepo.",
+      "version": "0.2.4",
+      "author": {
+        "name": "Wetaca Engineering"
+      },
+      "license": "MIT",
+      "tags": [
+        "code-review",
+        "gitlab",
+        "merge-request",
+        "multi-agent",
+        "mcp"
+      ]
+    },
+    {
+      "name": "clean-code-ts",
+      "source": "clean-code-ts",
+      "description": "TypeScript clean-code architecture skill — finds shallow modules and proposes deepening refactors with TS-specific interface idioms (discriminated unions, branded types, narrowing, ports as TS interfaces). Curated from Matt Pocock's improve-codebase-architecture via dmedina-dev/dev-forge.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Vicente Sempere",
+        "email": "vicentesempere@wetaca.com"
+      },
+      "license": "MIT",
+      "tags": [
+        "typescript",
+        "clean-code",
+        "architecture",
+        "refactoring",
+        "deep-modules"
+      ]
+    }
+  ]
+}

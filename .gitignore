@@ -1,0 +1,16 @@
+# Secretos y configuración local
+.env
+.env.local
+
+# Dependencias regenerables
+node_modules/
+
+# Artefactos del SO / editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Caches de Python
+__pycache__/
+*.pyc

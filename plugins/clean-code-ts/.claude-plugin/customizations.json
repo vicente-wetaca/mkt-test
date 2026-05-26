@@ -1,0 +1,71 @@
+{
+  "$comment": "Lineage and changes applied on top of the upstream curation. Future syncs should re-apply these on top of refreshed upstream content.",
+  "upstream": [
+    {
+      "origin": "mattpocock/skills",
+      "path": "skills/engineering/improve-codebase-architecture/",
+      "license": "MIT",
+      "url": "https://github.com/mattpocock/skills"
+    },
+    {
+      "origin": "dmedina-dev/dev-forge",
+      "path": "plugins/forge-mattpocock/skills/improve-codebase-architecture/",
+      "license": "MIT",
+      "url": "https://github.com/dmedina-dev/dev-forge",
+      "role": "intermediate curator"
+    }
+  ],
+  "skill": "clean-code-ts",
+  "changes": [
+    {
+      "file": "SKILL.md",
+      "type": "frontmatter",
+      "detail": "Renamed skill to `clean-code-ts`; rewrote `description` to trigger on TypeScript projects (tsconfig.json, .ts/.tsx) instead of the generic 'codebase architecture' wording."
+    },
+    {
+      "file": "SKILL.md",
+      "type": "addition",
+      "detail": "Added a `## TypeScript focus` section enumerating TS idioms the skill should prefer (discriminated unions, branded types, `unknown` over `any`, `Readonly<T>`, string unions over `enum`, TS `interface` for ports)."
+    },
+    {
+      "file": "SKILL.md",
+      "type": "addition",
+      "detail": "Added TypeScript-specific friction signals to the Explore step (pervasive `any`, runtime guards re-validating the same shape, large optional-field option objects, class hierarchies where a discriminated union would fit)."
+    },
+    {
+      "file": "INTERFACE-DESIGN.md",
+      "type": "addition",
+      "detail": "Added `## TypeScript idioms for designing interfaces` with worked examples for discriminated unions, branded types, `unknown` at boundaries, option-object signatures, ports as TS `interface`, avoiding `enum`, readonly-by-default."
+    },
+    {
+      "file": "DEEPENING.md",
+      "type": "addition",
+      "detail": "Annotated each dependency category (1–4) with a `TypeScript flavour` paragraph: pure functions + Readonly for in-process, structural typing for local-substitutable, TS interface as port for remote-owned, narrow port over vendor SDK for true external."
+    },
+    {
+      "file": "DEEPENING.md",
+      "type": "addition",
+      "detail": "Added `expectTypeOf` / `assertType` note to the testing strategy section — TS return types are part of the contract."
+    },
+    {
+      "file": "LANGUAGE.md",
+      "type": "addition",
+      "detail": "Added `## TypeScript naming conventions` section (vacuous nouns to avoid, verbs vs nouns, earned suffixes like Repository/Gateway/Policy, case conventions)."
+    },
+    {
+      "file": "LANGUAGE.md",
+      "type": "addition",
+      "detail": "Extended `## Rejected framings` with TS-specific rejections (`enum` over string unions, `any` instead of `unknown`)."
+    },
+    {
+      "file": "HTML-REPORT.md",
+      "type": "unchanged",
+      "detail": "Copied verbatim from upstream."
+    },
+    {
+      "file": "SKILL.md / INTERFACE-DESIGN.md / DEEPENING.md",
+      "type": "link-cleanup",
+      "detail": "Removed cross-links to other forge-mattpocock skills (`../grill-with-docs/GLOSSARY-FORMAT.md`, `../grill-with-docs/ADR-FORMAT.md`) since this plugin ships only the architecture skill. Behaviour preserved as inline guidance."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "clean-code-ts",
+  "displayName": "Clean Code TS",
+  "version": "0.1.0",
+  "description": "TypeScript clean-code architecture skill. Finds shallow modules and proposes deepening refactors with TS-specific interface idioms (discriminated unions, branded types, type narrowing, ports & adapters with TS interfaces). Curated from Matt Pocock's improve-codebase-architecture skill via dmedina-dev/dev-forge.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Vicente Sempere",
+      "email": "vicentesempere@wetaca.com"
+    }
+  ],
+  "keywords": [
+    "typescript",
+    "clean-code",
+    "architecture",
+    "refactoring",
+    "deep-modules",
+    "interface-design"
+  ]
+}

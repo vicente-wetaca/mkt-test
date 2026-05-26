@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "mr-auto-review",
+  "displayName": "MR Auto Review",
+  "version": "0.2.4",
+  "description": "Multi-agent MR reviewer for the Wetaca monorepo. Dispatches specialist reviewer agents in parallel and triages findings into a single human-facing report.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Wetaca Engineering"
+    }
+  ],
+  "mcpServers": "./mcp-server/mcp-config.json",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/check-workspace-writes.py"
+          }
+        ]
+      }
+    ]
+  }
+}

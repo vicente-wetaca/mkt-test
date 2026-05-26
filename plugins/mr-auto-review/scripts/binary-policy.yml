@@ -1,0 +1,109 @@
+# Binary allowlist policy — MR-auto-review plugin
+#
+# Lista de binarios permitidos en scripts del plugin (library + ad-hoc generados).
+# Cualquier binario no presente en `allowed` ni `rejected` requiere request al humano (ver BINARY-POLICY.md).
+# Rechazos persisten con razón + fecha + autor → no se vuelven a solicitar.
+#
+# Version: 1
+# Last updated: 2026-05-20
+
+allowed:
+  - name: grep
+    notes: "patrón básico"
+    audited: "2026-05-20"
+  - name: awk
+    notes: "regex y data extraction"
+    audited: "2026-05-20"
+  - name: sed
+    notes: "filtros de texto — SIN flag -i (no in-place edits)"
+    audited: "2026-05-20"
+  - name: find
+    notes: "exploración de paths — sin -delete ni -exec rm"
+    audited: "2026-05-20"
+  - name: git
+    notes: "subcomandos read-only: log, diff, show, status, blame, ls-files, rev-parse, worktree list"
+    audited: "2026-05-20"
+  - name: jq
+    notes: "parsing y filtering JSON"
+    audited: "2026-05-20"
+  - name: wc
+    notes: "conteo de líneas/chars"
+    audited: "2026-05-20"
+  - name: head
+    notes: "primeras N líneas"
+    audited: "2026-05-20"
+  - name: tail
+    notes: "últimas N líneas"
+    audited: "2026-05-20"
+  - name: cat
+    notes: "concatenación lectura"
+    audited: "2026-05-20"
+  - name: ls
+    notes: "listado de directorios"
+    audited: "2026-05-20"
+  - name: diff
+    notes: "comparación de ficheros"
+    audited: "2026-05-20"
+  - name: sort
+    notes: "ordenación de líneas"
+    audited: "2026-05-20"
+  - name: uniq
+    notes: "dedupe consecutivos"
+    audited: "2026-05-20"
+  - name: comm
+    notes: "diff de set entre líneas ordenadas (usado por detect-env-vars-changes)"
+    audited: "2026-05-20"
+  - name: tr
+    notes: "translate chars / squeeze whitespace"
+    audited: "2026-05-20"
+  - name: cut
+    notes: "selección de columnas"
+    audited: "2026-05-20"
+  - name: basename
+    notes: "extracción de nombre de fichero"
+    audited: "2026-05-20"
+  - name: dirname
+    notes: "extracción de dir"
+    audited: "2026-05-20"
+  - name: printf
+    notes: "output formateado portable"
+    audited: "2026-05-20"
+  - name: echo
+    notes: "output básico"
+    audited: "2026-05-20"
+  - name: mktemp
+    notes: "ficheros temporales seguros"
+    audited: "2026-05-20"
+  - name: date
+    notes: "timestamps"
+    audited: "2026-05-20"
+  - name: yarn
+    notes: "monorepo command — sólo `yarn jest --json --silent` está autorizado (consumido por run-tests-summary)"
+    audited: "2026-05-20"
+    constraints:
+      - "ONLY subcommand: jest"
+      - "MUST include --json"
+      - "NO `yarn add` / `yarn install` / `yarn build` / mutations del workspace"
+  - name: gtimeout
+    notes: "GNU timeout (preferido en macOS via coreutils brew)"
+    audited: "2026-05-20"
+  - name: timeout
+    notes: "GNU timeout (Linux default)"
+    audited: "2026-05-20"
+
+# Binarios rechazados por el humano — el orquestador NO debe solicitarlos de nuevo
+# Cuando R-script-auditor encuentra un script que los usa, verdict automático REJECTED
+rejected: []
+  # Formato esperado:
+  # - name: <bin>
+  #   reason: "<razón concisa, ≤120 chars>"
+  #   rejected_by: "<owner-email>"
+  #   rejected_at: "<YYYY-MM-DD>"
+
+# Binarios solicitados pero pendientes de decisión humana
+pending: []
+  # Formato esperado:
+  # - name: <bin>
+  #   requested_by: "<script-id que lo necesita>"
+  #   reason: "<motivo>"
+  #   requested_at: "<YYYY-MM-DD>"
