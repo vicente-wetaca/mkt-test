@@ -19,7 +19,7 @@
 
 Antes de iniciar el cutover:
 
-1. **Plugin instalado y verde**: el plugin debe estar cargado vía marketplace local `wetaca-plugins`. Verifícalo con `/plugin` en una sesión nueva — debe aparecer `mr-auto-review` activo.
+1. **Plugin instalado y verde**: el plugin debe estar cargado vía marketplace local `mkt-test`. Verifícalo con `/plugin` en una sesión nueva — debe aparecer `mr-auto-review` activo.
 2. **Token GitLab configurado**: `.claude/plugins/MR-auto-review/mcp-server/.env` con `GITLAB_TOKEN` válido (scope `api`).
 3. **Tests verdes en local**: `cd .claude/plugins/MR-auto-review/mcp-server && npm test` debe pasar ≥ 200 tests.
 4. **Validación de 6 MRs reales completa**: ver `SIX-MR-CHECKLIST.md` — al menos 5/6 con verdict positivo del humano.

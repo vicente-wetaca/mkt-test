@@ -88,14 +88,14 @@ Claude Code NO escanea directorios arbitrarios. El plugin se registra a través 
 Desde Claude Code (en cualquier directorio):
 
 ```
-/plugin marketplace add /Users/vicentesempere/Projects/Wetaca_work1/wetaca.com/.claude/worktrees/feature+WET-4814--mr-auto-review-plugin
-/plugin install mr-auto-review@wetaca-plugins
+/plugin marketplace add <path-to-local-mr-auto-review-worktree>
+/plugin install mr-auto-review@mkt-test
 /reload-plugins
 ```
 
 Tres pasos:
 1. **`marketplace add`** → registra el marketplace local. Claude Code lee `<path>/.claude-plugin/marketplace.json` y lo añade a `~/.claude/plugins/known_marketplaces.json`.
-2. **`install`** → activa el plugin. Añade `mr-auto-review@wetaca-plugins: true` a `~/.claude/settings.json#enabledPlugins`.
+2. **`install`** → activa el plugin. Añade `mr-auto-review@mkt-test: true` a `~/.claude/settings.json#enabledPlugins`.
 3. **`reload-plugins`** → recarga manifests sin reiniciar Claude Code.
 
 > Si ya tenías el symlink antiguo `~/.claude/plugins/local/MR-auto-review` (legacy approach), bórralo: `rm ~/.claude/plugins/local/MR-auto-review`. No causa daño pero no se usa.

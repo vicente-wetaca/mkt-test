@@ -39,7 +39,7 @@ Tras eso, el hook vuelve a transparente. El marker es self-explanatory: contiene
 
 ### Por defecto (recomendado): cargado via plugin.json
 
-`plugin.json` declara el hook como `PreToolUse` con `matcher: ".*"`. Cuando el plugin está cargado (vía marketplace local `wetaca-plugins`), el hook se aplica automáticamente — con marker gating, así que no estorba fuera de runs.
+`plugin.json` declara el hook como `PreToolUse` con `matcher: ".*"`. Cuando el plugin está cargado (vía marketplace local `mkt-test`), el hook se aplica automáticamente — con marker gating, así que no estorba fuera de runs.
 
 ### Opcional: refuerzo a nivel de proyecto
 

@@ -74,7 +74,7 @@ Si NO pasas `--local` ni `--mr`, el orquestador llama `gitlab_find_mr_for_branch
    - `$BINARY_POLICY` = `result.binaryPolicy`
    - `$HOOKS_DIR` = `result.hooksDir`
 
-   **Por qué**: cuando `/mr-review` se ejecuta desde un workspace que NO es el repo del plugin (lo normal — el plugin vive en `~/.claude/plugins/cache/wetaca-plugins/mr-auto-review/<v>/`), las rutas relativas como `scripts/library/<x>.sh` o `_kb/<x>.md` resuelven contra el cwd del usuario y fallan. `get_plugin_paths` devuelve los paths absolutos correctos. A partir de aquí: SIEMPRE estas variables, NUNCA paths relativos al plugin.
+   **Por qué**: cuando `/mr-review` se ejecuta desde un workspace que NO es el repo del plugin (lo normal — el plugin vive en `~/.claude/plugins/cache/mkt-test/mr-auto-review/<v>/`), las rutas relativas como `scripts/library/<x>.sh` o `_kb/<x>.md` resuelven contra el cwd del usuario y fallan. `get_plugin_paths` devuelve los paths absolutos correctos. A partir de aquí: SIEMPRE estas variables, NUNCA paths relativos al plugin.
 
 Reporta al usuario:
 > Repo: <repo>, branch: <branch>, base: <baseRef>, ticketId: <id>, mode: <local|remote>, MR: <iid o '-'>.

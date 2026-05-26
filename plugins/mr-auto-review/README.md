@@ -26,33 +26,42 @@ Multi-agent reviewer for Wetaca GitLab Merge Requests. Sustituye al skill `omar-
 
 ## Instalación
 
-El plugin se distribuye vía marketplace local declarado en el propio repo. El `marketplace.json` vive en `<repo-root>/.claude-plugin/marketplace.json` (committed).
+El plugin se distribuye vía el marketplace [`mkt-test`](https://github.com/vicente-wetaca/mkt-test).
 
-### Para devs Wetaca (después de clonar el repo)
-
-Desde Claude Code, en cualquier directorio (mejor desde la raíz del repo):
+Desde Claude Code:
 
 ```
-/plugin marketplace add /Users/<tu-user>/Projects/.../wetaca.com
-/plugin install mr-auto-review@wetaca-plugins
+/plugin marketplace add vicente-wetaca/mkt-test
+/plugin install mr-auto-review@mkt-test
 ```
 
-Luego reinicia Claude Code o ejecuta `/reload-plugins`. Verifica con `/help` (aparece `/mr-review`) y que los 4 agent types están registrados.
+Reinicia Claude Code o ejecuta `/reload-plugins`. Verifica con `/help` (aparece `/mr-review`) y que los agent types `R-*` están registrados.
 
-### Actualizar tras pull
+### Actualizar
 
 ```
-/plugin marketplace update wetaca-plugins
+/plugin marketplace update mkt-test
 ```
 
 ### Desinstalar
 
 ```
-/plugin uninstall mr-auto-review@wetaca-plugins
-/plugin marketplace remove wetaca-plugins
+/plugin uninstall mr-auto-review@mkt-test
 ```
 
-> **Nota** (Wave 1): los `subagent_type` declarados en `agents/*.md` y el slash command `/mr-review` se exponen automáticamente al cargar el plugin. El MCP server se arranca on-demand cuando alguna tool `mcp__plugin_mr-auto-review_mr-auto-review__*` se invoca; necesita `dist/index.js` compilado (`cd mcp-server && npm install && npm run build`).
+### MCP server
+
+El servidor MCP del plugin se distribuye **bundleado** (`mcp-server/dist/index.js` es self-contained vía `esbuild`). Los usuarios no necesitan `npm install` ni build — Claude Code lo arranca on-demand cuando se invoca una tool `mcp__plugin_mr-auto-review_mr-auto-review__*`.
+
+Para regenerar el bundle al modificar el server (sólo desarrollo):
+
+```
+cd mcp-server && npm install && npm run bundle
+```
+
+### Variables de entorno
+
+El servidor MCP necesita un `GITLAB_TOKEN` para postear comentarios. Ver `mcp-server/.env.example` para la plantilla. Se carga via `.env` en `${CLAUDE_PLUGIN_ROOT}/mcp-server/` (no se commitea).
 
 ## Estructura
 
